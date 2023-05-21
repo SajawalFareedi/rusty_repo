@@ -277,6 +277,56 @@ fn enums() {
 }
 
 
+// ----------------------------- //
+// Vectors - advanced
+// ----------------------------- //
+fn vectors() {
+    // Vectors are collections of elements of the same type     
+    // Vectors are ordered collections of elements
+    // Vectors are mutable
+    // Vectors are growable
+    // Vectors are indexed
+    // Vectors are slices
+
+    // New vector - after that you can use push() method to add values in it
+    let mut vec0: Vec<i32> = Vec::new();
+
+    // Vector with values
+    let mut vec1: Vec<i32> = vec![1, 2, 3, 4, 5];
+
+    // Vector with size
+    let mut vec2: Vec<i32> = Vec::with_capacity(5);
+
+    // Pushing in vector
+    vec1.push(6);
+
+    // Getting value from vector
+    println!("1st value: {}", vec1[0]);
+
+    // Checking if value exists
+    let sec = vec1[1];
+
+    match vec1.get(1) {
+        Some(sec) => println!("2nd value: {}", sec),
+        None => println!("No 2nd value"),
+    }
+
+    // Looping over vector and modifying value
+    for i in &mut vec1 {
+        *i *= 2
+    }
+
+    // Looping over vector for getting values
+    for i in &vec1 {
+        println!("Value: {}", i);
+    }
+
+    // Length of vector + pop() in vector
+    println!("Length: {}", vec1.len());
+    println!("Pop: {:?}", vec1.pop());
+
+}
+
 // ------------------------------ //
 // main is necessary in rust
 // ----------------------------- //
@@ -290,5 +340,6 @@ fn main() {
     // loop_arr();
     // strings();
     // casting();
-    enums();
+    // enums();
+    vectors();
 }
