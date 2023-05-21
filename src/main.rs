@@ -21,7 +21,8 @@ fn expect() {
 // ------------------------------ //
 // shadowing + constants
 // ----------------------------- //
-fn shadowing() {
+fn shadowing() { 
+    // Shadowing is a technique in which a variable declared within a certain scope has the same name as a variable declared in an outer scope //
     const ONE_MIL: u32 = 1_000_000;
     const PI: f32 = 3.141592;
     let age = "19";
@@ -83,7 +84,7 @@ fn maths() {
 }
 
 // ------------------------------ //
-// conditional statements
+// if_else + ternary + match
 // ----------------------------- //
 fn if_else() {
     let age = 19;
@@ -132,7 +133,6 @@ fn loop_arr() {
     println!("Length of arr_2: {}", arr_2.len());
 
     // While Loop //
-
     let mut idx = 0;
 
     while idx < arr_1.len() {
@@ -141,16 +141,16 @@ fn loop_arr() {
     }
 
     // For Loop //
-
     for v in arr_2.iter() {
         println!("Val: {}", v);
     }
 
-    // Tuples //
-    let tup_1: (u8, String, f32) = (19, "Sajawal".to_string(), 9_000_000_000_000_000_000_000.00);
-    println!("\nName: {}", tup_1.1);
+    // Tuples // You've to define the types respective to the values in the tuple //
+    let tup: (u8, String, f32) = (19, "Sajawal".to_string(), 9_000_000_000_000_000_000_000.00);
+    println!("\nName: {}", tup.1);
 
-    let (v1, v2, v3) = tup_1;
+    // Tuple destructring - Just like in python or in javascript (object destructring)
+    let (v1, v2, v3) = tup;
     println!("Age: {} \nWealth: ${}\n", v1, v3);
 
 }
@@ -189,6 +189,7 @@ fn strings() {
     st5.sort();
     st5.dedup();
 
+    // Looping over vector //
     for c in st5.iter() {
         println!("{}", c);
     }
@@ -207,22 +208,87 @@ fn strings() {
     // String combining
     let st9 = String::from("Just Some");
     let st10 = String::from(" Random Words");
-    let st11 = st9 + &st10; // One thing to note here is that the & is used for referencing to that string. We didn't put it will st9 so after this line gets executed st9 will not exists because its st11 now with st10 combined. You must not add & sign to the first string. You can add it to the rest. In this case we added to st10 but didn't added it to the first string which is st9. //
+    let st11 = st9 + &st10; // One thing to note here is that the '&' is used for referencing to that string. We didn't put it with st9 so after this line gets executed st9 will not exists because its st11 now with st10 combined. You must not add '&' sign to the first string. You can add it to the rest. In this case we added to st10 but didn't added it to the first string which is st9. //
     println!("{}", st11);
 
 }
 
+// ------------------------------ //
+// casting
+// ----------------------------- //
+fn casting() {
+    // Casting means converting from one data type to other
+    // Like - u8 to u32
+
+    // We always use 'as' to convert
+
+    // u8 -> u32
+    let u8_1: u8 = 5;
+    let u8_2: u8 = 4;
+    let u32_0: u32 = (u8_1 as u32) + (u8_2 as u32);
+
+    let dec = 65.4321_f32;
+    // f32 -> i32
+    let int = dec as i32;
+    // i32 -> u8
+    let int2 = int as u8;
+    // u8 -> char
+    let char  = int2 as char; // Note: You can only convert u8 to char //
+}
+
+// ----------------------------- //
+// Enumerators
+// ----------------------------- //
+fn enums() {
+    // Enums are collections of variants
+    // Each variant is a case
+    // Each case is assigned a value
+
+    // First define all of the variants
+    enum Day {
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday
+    }
+
+    // Then you can define functions for those variants
+    impl Day {
+        fn is_weekend(&self) -> bool {
+            match self {
+                Day::Saturday | Day::Sunday => true,
+                _ => false
+            }
+        }
+    }
+
+    // Declare a variable with data type set to that enum 
+    let day: Day = Day::Tuesday;
+    
+    // Use the function which are in impl
+    if day.is_weekend() {
+        println!("It's a weekend!");
+    } else {
+        println!("It's a weekday!");
+    }
+}
 
 
 // ------------------------------ //
 // main is necessary in rust
 // ----------------------------- //
-fn main() {
+fn main() { 
+    // Calling the required function //
     // expect();
     // shadowing();
     // data_types();
     // maths();
     // if_else();
     // loop_arr();
-    strings();
+    // strings();
+    // casting();
+    enums();
 }
