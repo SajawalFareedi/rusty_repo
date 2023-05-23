@@ -6,6 +6,7 @@ use std::fs::File;
 use std::io::{BufRead, BufReader, Write, ErrorKind};
 use rand::Rng;
 use std::cmp::Ordering;
+use std::ops::Add;
 
 // ------------------------------ //
 // expect + io
@@ -327,10 +328,26 @@ fn vectors() {
 
 }
 
+// ----------------------------- //
+// A generic function in rust
+// ----------------------------- //
+fn add_sum_gen<T:Add<Output = T>>(x: T, y: T) -> T {
+    // A generic function is a function that is declared with type parameters. 
+    // When called, actual types are used instead of the type parameters.
+    // In rust we have some limitation so that's why i used 'Add' so it will know that it will be some kind of number for 'adding'
+    // You also have to tell what will be the output, so i set it to T because whatever comes in T that same will go out.
+    
+    x + y // last line is returned by default in all kind of functions in rust
+
+    // OR //
+
+    // return x + y // Or, you can use return keyword too
+}
+
 // ------------------------------ //
 // main is necessary in rust
 // ----------------------------- //
-fn main() { 
+fn main() {
     // Calling the required function //
     // expect();
     // shadowing();
@@ -341,5 +358,6 @@ fn main() {
     // strings();
     // casting();
     // enums();
-    vectors();
+    // vectors();
+    add_sum_gen(5.2, 6.4);
 }
